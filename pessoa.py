@@ -7,7 +7,7 @@ NOMES = [
         "João", "Maria", "Pedro", "Ana", "Luiz",
         "Sofia", "Miguel", "Lara", "Carlos", "Beatriz",
         "Gustavo", "Isabella", "Fernando", "Camila", "Rafael",
-        "Gary",
+        "Gary", "Wendy",
 ]
 
 
@@ -26,13 +26,15 @@ POKEMONS = [
 
 class Pessoa:
 
-    def __init__(self, nome=None, pokemons=[]):
+    def __init__(self, nome=None, pokemons=[], dinheiro=100):
         if nome:
             self.nome = nome
         else:
             self.nome = random.choice(NOMES)
 
         self.pokemons = pokemons
+
+        self.dinheiro = dinheiro
 
     def __str__(self):
         return self.nome
@@ -55,6 +57,16 @@ class Pessoa:
             print('ERRO: Esse jogador não possui Pokemons!')
 
 
+    def mostrar_dinheiro(self):
+        print(f'Você possui ${self.dinheiro}')
+
+
+    def ganhar_dinheiro(self, quantidade):
+        self.dinheiro += quantidade
+        print(f'{self} ganhou ${quantidade}')
+        self.mostrar_dinheiro()
+
+
     def batalhar(self, pessoa):
         print(f'{self} iniciou uma batalha com {pessoa}')
 
@@ -68,6 +80,7 @@ class Pessoa:
                 vitoria = pokemon_player.atacar(pokemon_inimigo)
                 if vitoria:
                     print(f'{self} ganhou a batalha!')
+                    self.ganhar_dinheiro(pokemon_inimigo.level * 100)
                     break
 
                 vitoria_inimiga = pokemon_inimigo.atacar(pokemon_player)
