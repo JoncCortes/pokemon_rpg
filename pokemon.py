@@ -36,6 +36,8 @@ class Pokemon:
 class pokemonEletrico(Pokemon):
     tipo = 'eletrico'
     def atacar(self, pokemon):
+        print(f'PONTOS DE VIDA: {self.vida}')
+        print('=#' * 30)
         print(f'{self} lançou RAIO DO TROVÃO em {pokemon}')
         return super().atacar(pokemon)
 
@@ -43,6 +45,8 @@ class pokemonEletrico(Pokemon):
 class pokemonFogo(Pokemon):
     tipo = 'fogo'
     def atacar(self, pokemon):
+        print(f'PONTOS DE VIDA: {self.vida}')
+        print('=#' * 30)
         print(f'{self} lançou BOLA DE FOGO em {pokemon}')
         return super().atacar(pokemon)
 
@@ -50,5 +54,8 @@ class pokemonFogo(Pokemon):
 class pokemonAgua(Pokemon):
     tipo = 'agua'
     def atacar(self, pokemon):
+        print(f'PONTOS DE VIDA: {self.vida}')
+        print('=#' * 30)
         print(f'{self} lançou JATO DE AGUA em {pokemon}')
         return super().atacar(pokemon)
+
