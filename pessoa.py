@@ -1,5 +1,7 @@
 import random
 
+from time import sleep
+
 from pokemon import *
 
 
@@ -41,11 +43,14 @@ class Pessoa:
 
     def mostrar_pokemons(self):
         if self.pokemons:
-            print(f'Pokemons de {self}')
+            print(' ')
+            print(f'Pokémons de >> {self} << ')
+            print(f'Você tem {len(self.pokemons)} Pokémons')
+            print('~' * 30)
             for i, pokemon in enumerate(self.pokemons):
                 print(f'{i} - {pokemon}')
         else:
-            print(f'{self} não tem pokemons')
+            print(f'{self} não tem pokémons')
 
 
     def escolher_pokemon(self):
@@ -68,18 +73,23 @@ class Pessoa:
 
 
     def batalhar(self, pessoa):
-        print(f'{self} iniciou uma batalha com {pessoa}')
+        print('==' * 30)
+        print(f'>>>>>>>> {self} iniciou uma batalha com {pessoa} <<<<<<<<')
+        print('==' * 30)
 
         pessoa.mostrar_pokemons()
+        print('-' * 30)
         pokemon_inimigo = pessoa.escolher_pokemon()
+        print('-' * 30)
 
         pokemon_player = self.escolher_pokemon()
+        print('-' * 30)
 
         if pokemon_player and pokemon_inimigo:
             while True:
                 vitoria = pokemon_player.atacar(pokemon_inimigo)
                 if vitoria:
-                    print(f'{self} ganhou a batalha!')
+                    print(f'{self} GANHOU A BATALHA!')
                     self.ganhar_dinheiro(pokemon_inimigo.level * 100)
                     break
 
@@ -122,6 +132,8 @@ class Player(Pessoa):
 
             escolha = input('Deseja capturar esse pokemon? (s/n): ')
             if escolha == 's':
+                print('Capturado...')
+                sleep(3)
                 if random.random() >= 0.5:
                     self.capturar(pokemon)
                 else:
@@ -129,8 +141,10 @@ class Player(Pessoa):
             else:
                 print('OK, boa viagem! ')
 
+
         else:
             print('Essa exploração não deu em nada! ')
+            sleep(1.5)
 
 
 class Inimigo(Pessoa):

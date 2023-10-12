@@ -1,5 +1,7 @@
 import random
 
+from time import sleep
+
 class Pokemon:
     def __init__(self, especie, level=None, nome=None):
         self.especie = especie
@@ -24,7 +26,9 @@ class Pokemon:
         ataque_efetivo = int((self.ataque * random.random() * 1.3))
         pokemon.vida -= ataque_efetivo
 
+        print('-' * 30)
         print(f'{pokemon} perdeu {ataque_efetivo} pontos de vida')
+        print('-' * 30)
 
         if pokemon.vida <= 0:
             print(f'{pokemon} foi derrotado!')
@@ -36,8 +40,8 @@ class Pokemon:
 class pokemonEletrico(Pokemon):
     tipo = 'eletrico'
     def atacar(self, pokemon):
-        print(f'PONTOS DE VIDA: {self.vida}')
-        print('=#' * 30)
+        sleep(2)
+        print('-' * 30)
         print(f'{self} lançou RAIO DO TROVÃO em {pokemon}')
         return super().atacar(pokemon)
 
@@ -45,8 +49,8 @@ class pokemonEletrico(Pokemon):
 class pokemonFogo(Pokemon):
     tipo = 'fogo'
     def atacar(self, pokemon):
-        print(f'PONTOS DE VIDA: {self.vida}')
-        print('=#' * 30)
+        sleep(2)
+        print('-' * 30)
         print(f'{self} lançou BOLA DE FOGO em {pokemon}')
         return super().atacar(pokemon)
 
@@ -54,8 +58,8 @@ class pokemonFogo(Pokemon):
 class pokemonAgua(Pokemon):
     tipo = 'agua'
     def atacar(self, pokemon):
-        print(f'PONTOS DE VIDA: {self.vida}')
-        print('=#' * 30)
+        sleep(2)
+        print('-' * 30)
         print(f'{self} lançou JATO DE AGUA em {pokemon}')
         return super().atacar(pokemon)
 
