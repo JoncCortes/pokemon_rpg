@@ -28,7 +28,7 @@ POKEMONS = [
 
 class Pessoa:
 
-    def __init__(self, nome=None, pokemons=[], dinheiro=100):
+    def __init__(self, nome=None, pokemons=[], dinheiro=100, pokebolas=5):
         if nome:
             self.nome = nome
         else:
@@ -37,6 +37,8 @@ class Pessoa:
         self.pokemons = pokemons
 
         self.dinheiro = dinheiro
+
+        self.pokebolas = pokebolas
 
     def __str__(self):
         return self.nome
@@ -63,13 +65,23 @@ class Pessoa:
 
 
     def mostrar_dinheiro(self):
-        print(f'Você possui ${self.dinheiro}')
+        print(f'DINHEIRO: ${self.dinheiro}')
+
+
+    def mostrar_pokebolas(self):
+        print(f'POKEBOLAS: {self.pokebolas}')
 
 
     def ganhar_dinheiro(self, quantidade):
         self.dinheiro += quantidade
         print(f'{self} ganhou ${quantidade}')
         self.mostrar_dinheiro()
+
+
+    def ganhar_pokebolas(self, quantidade):
+        self.pokebolas += quantidade
+        print(f'{self} ganhou {quantidade} pokebolas')
+        self.mostrar_pokebolas()
 
 
     def batalhar(self, pessoa):
@@ -90,7 +102,8 @@ class Pessoa:
                 vitoria = pokemon_player.atacar(pokemon_inimigo)
                 if vitoria:
                     print(f'{self} GANHOU A BATALHA!')
-                    self.ganhar_dinheiro(pokemon_inimigo.level * 100)
+                    self.ganhar_dinheiro(pokemon_inimigo.level * 8)
+                    self.ganhar_pokebolas(random.randint(0, 5))
                     break
 
                 vitoria_inimiga = pokemon_inimigo.atacar(pokemon_player)
@@ -126,25 +139,28 @@ class Player(Pessoa):
 
 
     def explorar(self):
-        if random.random() <= 0.3:
-            pokemon = random.choice(POKEMONS)
-            print(f'Um {pokemon} selvagem apareceu!')
+        if self.pokebolas > 0:
+            if random.random() <= 0.4: #chance de aparecer pokemon
+                pokemon = random.choice(POKEMONS)
+                print(f'Um {pokemon} selvagem apareceu!')
 
-            escolha = input('Deseja capturar esse pokemon? (s/n): ')
-            if escolha == 's':
-                print('Capturado...')
-                sleep(3)
-                if random.random() >= 0.5:
-                    self.capturar(pokemon)
+                escolha = input('Deseja capturar esse pokemon? (s/n): ')
+                if escolha == 's':
+                    print('Capturado...')
+                    sleep(3)
+                    if random.random() >= 0.5: #chance de captura
+                        self.capturar(pokemon)
+                        self.pokebolas -= 1
+                    else:
+                        print(f'{pokemon} fugiu!')
                 else:
-                    print(f'{pokemon} fugiu!')
+                    print('OK, boa viagem! ')
             else:
-                print('OK, boa viagem! ')
-
-
+                print('Essa exploração não deu em nada! ')
+                sleep(1.5)
         else:
-            print('Essa exploração não deu em nada! ')
-            sleep(1.5)
+            print('>>>>> Você não tem pokebolas para explorar')
+
 
 
 class Inimigo(Pessoa):

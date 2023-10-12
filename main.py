@@ -104,6 +104,7 @@ if __name__ == '__main__':
         print('[ 1 ] Explorar o mundo')
         print('[ 2 ] Batalha de treinadores')
         print('[ 3 ] Pokedex')
+        print('[ 4 ] Bolsa')
         print('[ 0 ] Sair do jogo')
         print('=#' * 30)
         escolha = input('>>>>> sua opção: ')
@@ -123,5 +124,9 @@ if __name__ == '__main__':
             save_game(player)
         elif escolha == '3':
             player.mostrar_pokemons()
+        elif escolha == '4':
+            print('===== SUA BOLSA =====')
+            player.mostrar_dinheiro()
+            player.mostrar_pokebolas()
         else:
             print('>>>>> Opção invalida')
