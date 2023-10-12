@@ -7,7 +7,7 @@ NOMES = [
         "João", "Maria", "Pedro", "Ana", "Luiz",
         "Sofia", "Miguel", "Lara", "Carlos", "Beatriz",
         "Gustavo", "Isabella", "Fernando", "Camila", "Rafael",
-        "Gary", "Wendy",
+        "Wendy",
 ]
 
 
@@ -113,6 +113,24 @@ class Player(Pessoa):
                     print('Escolha inválida')
         else:
             print('ERRO: Esse jogador não possui Pokemons!')
+
+
+    def explorar(self):
+        if random.random() <= 0.3:
+            pokemon = random.choice(POKEMONS)
+            print(f'Um {pokemon} selvagem apareceu!')
+
+            escolha = input('Deseja capturar esse pokemon? (s/n): ')
+            if escolha == 's':
+                if random.random() >= 0.5:
+                    self.capturar(pokemon)
+                else:
+                    print(f'{pokemon} fugiu!')
+            else:
+                print('OK, boa viagem! ')
+
+        else:
+            print('Essa exploração não deu em nada! ')
 
 
 class Inimigo(Pessoa):
