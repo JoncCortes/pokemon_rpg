@@ -53,6 +53,9 @@ def load_game():
         print('>>>>> Save não encontrado')
 
 
+dia = 1
+
+
 if __name__ == '__main__':
     print('=#' * 50)
     print('Bem-vindo ao POKEMON RPG baseado em texto ')
@@ -91,8 +94,8 @@ if __name__ == '__main__':
         print('Pronto, agora que já tem seu Pokémon, prepare-se para sua primeira batalha pokémon!')
         sleep(3)
 
-        gary = Inimigo('Gary', pokemons=[pokemonAgua('squirtle', level=1)])
-        player.batalhar(gary)
+        primeiro = Inimigo(pokemons=[pokemonAgua('Squirtle', level=1)])
+        player.batalhar(primeiro)
         print('Agora que já sabe como batalhar, está livre para explorar ou continuar batalhando!')
         save_game(player)
 
@@ -100,6 +103,8 @@ if __name__ == '__main__':
         sleep(1.5)
         print(' ')
         print('=#' * 30)
+        print(f'DIA: {dia}')
+        print('-' * 30)
         print('O que deseja fazer agora?')
         print('[ 1 ] Explorar o mundo')
         print('[ 2 ] Batalha de treinadores')
@@ -114,16 +119,28 @@ if __name__ == '__main__':
             sleep(2)
             break
         elif escolha == '1':
-            print('Explorando...')
-            sleep(3)
             player.explorar()
+            dia += 1
             save_game(player)
         elif escolha == '2':
             inimgo_aleatorio = Inimigo()
             player.batalhar(inimgo_aleatorio)
+            dia += 1
             save_game(player)
         elif escolha == '3':
             player.mostrar_pokemons()
+            # print('-' * 30)
+            # print('[ 1 ] Excluir Pokémon')
+            # print('[ 0 ] Voltar')
+            # opcao = input('Sua Opção: ')
+            # if opcao == '1':
+            #     pokemon_excluir = input('Digite o número do Pokémon: ')
+            #     pokemon_excluir(pokemon_excluir)
+            #     save_game(player)
+            # else:
+            #     continue
+
+
         elif escolha == '4':
             print('===== SUA BOLSA =====')
             player.mostrar_dinheiro()

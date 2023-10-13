@@ -64,6 +64,18 @@ class Pessoa:
             print('ERRO: Esse jogador não possui Pokemons!')
 
 
+    # def excluir_pokemon(self, pokemon_excluir):
+    #     try:
+    #         self.pokemons.remove(pokemons)
+    #         print(' ')
+    #         print(f'>>>>>> Pokémon {pokemon_excluir} excluido com sucesso!')
+    #         print(' ')
+    #     except KeyError:
+    #         print('>>>>>> Pokémon inexistente!')
+    #     except Exception as error:
+    #         print(f'Um erro inesperado ocorreu! ERRO: {error}')
+
+
     def mostrar_dinheiro(self):
         print(f'DINHEIRO: ${self.dinheiro}')
 
@@ -75,6 +87,12 @@ class Pessoa:
     def ganhar_dinheiro(self, quantidade):
         self.dinheiro += quantidade
         print(f'{self} ganhou ${quantidade}')
+        self.mostrar_dinheiro()
+
+
+    def perder_dinheiro(self, quantidade):
+        self.dinheiro -= quantidade
+        print(f'{self} perdeu ${quantidade}')
         self.mostrar_dinheiro()
 
 
@@ -109,6 +127,7 @@ class Pessoa:
                 vitoria_inimiga = pokemon_inimigo.atacar(pokemon_player)
                 if vitoria_inimiga:
                     print(f'{pessoa} ganhou a batalha!')
+                    self.perder_dinheiro(pokemon_inimigo.level * 1.3)
                     break
         else:
             print('Essa batalha não pode ocorrer')
@@ -140,21 +159,26 @@ class Player(Pessoa):
 
     def explorar(self):
         if self.pokebolas > 0:
+            print('Explorando...')
+            sleep(3)
             if random.random() <= 0.4: #chance de aparecer pokemon
                 pokemon = random.choice(POKEMONS)
                 print(f'Um {pokemon} selvagem apareceu!')
-
-                escolha = input('Deseja capturar esse pokemon? (s/n): ')
-                if escolha == 's':
-                    print('Capturado...')
-                    sleep(3)
-                    if random.random() >= 0.5: #chance de captura
-                        self.capturar(pokemon)
-                        self.pokebolas -= 1
+                try:
+                    escolha = input('Deseja capturar esse pokemon? (s/n): ')
+                    if escolha == 's':
+                        print('Capturado...')
+                        sleep(3)
+                        if random.random() >= 0.5: #chance de captura
+                            self.capturar(pokemon)
+                            self.pokebolas -= 1
+                        else:
+                            print(f'{pokemon} fugiu!')
+                            self.pokebolas -= 1
                     else:
-                        print(f'{pokemon} fugiu!')
-                else:
-                    print('OK, boa viagem! ')
+                        print('OK, boa viagem! ')
+                except:
+                    print('>>>>> Opção invalida')
             else:
                 print('Essa exploração não deu em nada! ')
                 sleep(1.5)
