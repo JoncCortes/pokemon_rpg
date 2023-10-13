@@ -108,7 +108,7 @@ if __name__ == '__main__':
         print('O que deseja fazer agora?')
         print('[ 1 ] Explorar o mundo')
         print('[ 2 ] Batalha de treinadores')
-        print('[ 3 ] Pokedex')
+        print('[ 3 ] Pokémons')
         print('[ 4 ] Bolsa')
         print('[ 0 ] Sair do jogo')
         print('=#' * 30)
