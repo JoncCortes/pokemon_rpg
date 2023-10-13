@@ -9,7 +9,7 @@ foi crescendo e se tornou algo a mais.</p>
 <h2>Ainda pretendo adicionar:</h2>
 <ul>
 <li>Mais Pokémons</li>
-<li>Loja</li>
+<li>Loja ✔</li>
 <li>Pokédex</li>
 <li>Mais complexidade a batalha</li>
 <li>Sistema de cura</li>
@@ -23,6 +23,10 @@ foi crescendo e se tornou algo a mais.</p>
 
 <h2>Changelog:</h2>
 
+
+<p>1.0.4: <br>
+Adicionado Loja.<br>
+Resolvido bug que não salvava os dias passados.</p>
 
 <p>1.0.3: <br>
 Implementado sistema de dias. </p>

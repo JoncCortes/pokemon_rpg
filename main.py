@@ -53,7 +53,48 @@ def load_game():
         print('>>>>> Save não encontrado')
 
 
-dia = 1
+def shop():
+    while True:
+        sleep(1.5)
+        print('=#' * 30)
+        print('Bem-vindo a Loja pokémon')
+        print('--' * 30)
+        print('O que deseja comprar?')
+        print('[ 1 ] POKEBOLA : $200')
+        print('[ 2 ] -------- : FORA DE ESTOQUE')
+        print('[ 3 ] -------- : FORA DE ESTOQUE')
+        print('[ 0 ] Sair da loja')
+        opcao = input('Sua escolha: ')
+
+        if opcao == '1':
+            quantidade = int(input('Quantas pokebolas deseja comprar: '))
+            if player.dinheiro >= 200 * quantidade:
+                player.pokebolas += quantidade
+                player.dinheiro -= 200 * quantidade
+                print('-' * 15)
+                print(f'{quantidade} Pokebolas compradas com sucesso!')
+                print('-' * 15)
+                break
+            else:
+                print('-' * 15)
+                print('Você não tem dinheiro suficiente!')
+                print('-' * 15)
+        elif opcao == '2':
+            print('-' * 15)
+            print('Produto fora de estoque')
+            print('-' * 15)
+        elif opcao == '3':
+            print('-' * 15)
+            print('Produto fora de estoque')
+            print('-' * 15)
+        elif opcao == '0':
+            break
+        else:
+            print('-' * 15)
+            print('Opção invalida')
+            print('-' * 15)
+
+
 
 
 if __name__ == '__main__':
@@ -75,7 +116,6 @@ if __name__ == '__main__':
         sleep(2.5)
         print('Se conseguir capturar todos os Pokémons, você se tornará um MESTRE POKÉMON!')
         sleep(2.5)
-        #player.mostrar_dinheiro()
 
         if player.pokemons:
             print('-' * 30)
@@ -103,13 +143,14 @@ if __name__ == '__main__':
         sleep(1.5)
         print(' ')
         print('=#' * 30)
-        print(f'DIA: {dia}')
+        player.mostrar_dia()
         print('-' * 30)
         print('O que deseja fazer agora?')
         print('[ 1 ] Explorar o mundo')
         print('[ 2 ] Batalha de treinadores')
         print('[ 3 ] Pokémons')
         print('[ 4 ] Bolsa')
+        print('[ 5 ] Loja')
         print('[ 0 ] Sair do jogo')
         print('=#' * 30)
         escolha = input('>>>>> sua opção: ')
@@ -120,12 +161,12 @@ if __name__ == '__main__':
             break
         elif escolha == '1':
             player.explorar()
-            dia += 1
+            player.add_dias(1)
             save_game(player)
         elif escolha == '2':
             inimgo_aleatorio = Inimigo()
             player.batalhar(inimgo_aleatorio)
-            dia += 1
+            player.add_dias(1)
             save_game(player)
         elif escolha == '3':
             player.mostrar_pokemons()
@@ -145,5 +186,8 @@ if __name__ == '__main__':
             print('===== SUA BOLSA =====')
             player.mostrar_dinheiro()
             player.mostrar_pokebolas()
+
+        elif escolha == '5':
+            shop()
         else:
             print('>>>>> Opção invalida')

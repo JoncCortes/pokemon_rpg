@@ -28,7 +28,7 @@ POKEMONS = [
 
 class Pessoa:
 
-    def __init__(self, nome=None, pokemons=[], dinheiro=100, pokebolas=5):
+    def __init__(self, nome=None, pokemons=[], dinheiro=100, pokebolas=5, dia=1):
         if nome:
             self.nome = nome
         else:
@@ -39,6 +39,8 @@ class Pessoa:
         self.dinheiro = dinheiro
 
         self.pokebolas = pokebolas
+
+        self.dia = dia
 
     def __str__(self):
         return self.nome
@@ -77,29 +79,37 @@ class Pessoa:
 
 
     def mostrar_dinheiro(self):
-        print(f'DINHEIRO: ${self.dinheiro}')
+        print(f'DINHEIRO: ${self.dinheiro:.2f}')
 
 
     def mostrar_pokebolas(self):
         print(f'POKEBOLAS: {self.pokebolas}')
 
 
+    def mostrar_dia(self):
+        print(f'DIA: {self.dia}')
+
+
     def ganhar_dinheiro(self, quantidade):
         self.dinheiro += quantidade
-        print(f'{self} ganhou ${quantidade}')
+        print(f'{self} ganhou ${quantidade:.2f}')
         self.mostrar_dinheiro()
 
 
-    def perder_dinheiro(self, quantidade):
-        self.dinheiro -= quantidade
-        print(f'{self} perdeu ${quantidade}')
-        self.mostrar_dinheiro()
+    # def perder_dinheiro(self, quantidade):
+    #     self.dinheiro -= quantidade
+    #     print(f'{self} perdeu ${quantidade}')
+    #     self.mostrar_dinheiro()
 
 
     def ganhar_pokebolas(self, quantidade):
         self.pokebolas += quantidade
         print(f'{self} ganhou {quantidade} pokebolas')
         self.mostrar_pokebolas()
+
+
+    def add_dias(self,quantidade):
+        self.dia += quantidade
 
 
     def batalhar(self, pessoa):
@@ -120,14 +130,14 @@ class Pessoa:
                 vitoria = pokemon_player.atacar(pokemon_inimigo)
                 if vitoria:
                     print(f'{self} GANHOU A BATALHA!')
-                    self.ganhar_dinheiro(pokemon_inimigo.level * 8)
+                    self.ganhar_dinheiro(pokemon_inimigo.level * 1.5) # <- quantidadde de dinheiro ganho
                     self.ganhar_pokebolas(random.randint(0, 5))
                     break
 
                 vitoria_inimiga = pokemon_inimigo.atacar(pokemon_player)
                 if vitoria_inimiga:
                     print(f'{pessoa} ganhou a batalha!')
-                    self.perder_dinheiro(pokemon_inimigo.level * 1.3)
+                    self.ganhar_dinheiro(pokemon_inimigo.level * 0.8) # <- quantidadde de dinheiro ganho
                     break
         else:
             print('Essa batalha não pode ocorrer')
@@ -161,7 +171,7 @@ class Player(Pessoa):
         if self.pokebolas > 0:
             print('Explorando...')
             sleep(3)
-            if random.random() <= 0.4: #chance de aparecer pokemon
+            if random.random() <= 0.8: #chance de aparecer pokemon
                 pokemon = random.choice(POKEMONS)
                 print(f'Um {pokemon} selvagem apareceu!')
                 try:
@@ -169,7 +179,7 @@ class Player(Pessoa):
                     if escolha == 's':
                         print('Capturado...')
                         sleep(3)
-                        if random.random() >= 0.5: #chance de captura
+                        if random.random() >= 0.1: #chance de captura
                             self.capturar(pokemon)
                             self.pokebolas -= 1
                         else:
@@ -184,6 +194,7 @@ class Player(Pessoa):
                 sleep(1.5)
         else:
             print('>>>>> Você não tem pokebolas para explorar')
+
 
 
 
