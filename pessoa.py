@@ -130,7 +130,7 @@ class Pessoa:
                 vitoria = pokemon_player.atacar(pokemon_inimigo)
                 if vitoria:
                     print(f'{self} GANHOU A BATALHA!')
-                    self.ganhar_dinheiro(pokemon_inimigo.level * 1.5) # <- quantidadde de dinheiro ganho
+                    self.ganhar_dinheiro(pokemon_inimigo.level * 1.6) # <- quantidadde de dinheiro ganho
                     self.ganhar_pokebolas(random.randint(0, 5))
                     break
 
@@ -179,7 +179,7 @@ class Player(Pessoa):
                     if escolha == 's':
                         print('Capturado...')
                         sleep(3)
-                        if random.random() >= 0.1: #chance de captura
+                        if random.random() >= 0.5: #chance de captura
                             self.capturar(pokemon)
                             self.pokebolas -= 1
                         else:
