@@ -126,8 +126,9 @@ if __name__ == '__main__':
 ⠀⠀⠀⠀⠀⠀⠀⠀⢹⣦⡀⠈⠃⣦⠘⢷⡀⠀⠀⠀⢀⣧⣤⣤⣿⠀⠀⠀⢀⣼⠃⣀⠒⠛⢀⣤⣾⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣛⣦⠴⢿⢶⣿⣿⡤⢴⣶⢿⡛⠁⠙⣿⣶⣤⣤⣾⣗⢶⣯⣤⣴⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
     ''')
-    print('Bem-vindo ao POKEMON RPG baseado em texto ')
-    print('Criado por Jonas Cortes © 2023')
+    print('=#' * 50)
+    print('                         Bem-vindo ao POKÉMON RPG baseado em texto')
+    print('                              Criado por Jonas Cortes © 2023')
     print('=#' * 50)
     sleep(2)
 
@@ -197,16 +198,17 @@ if __name__ == '__main__':
             save_game(player)
         elif escolha == '3':
             player.mostrar_pokemons()
-            # print('-' * 30)
-            # print('[ 1 ] Excluir Pokémon')
-            # print('[ 0 ] Voltar')
-            # opcao = input('Sua Opção: ')
-            # if opcao == '1':
-            #     pokemon_excluir = input('Digite o número do Pokémon: ')
-            #     pokemon_excluir(pokemon_excluir)
-            #     save_game(player)
-            # else:
-            #     continue
+            print('-' * 30)
+            print('[ 1 ] Excluir Pokémon')
+            print('[ 0 ] Voltar')
+            opcao = input('Sua Opção: ')
+            if opcao == '1':
+                pokemon_del = int(input('Digite o número do Pokémon: '))
+                player.excluir_pokemon(pokemon_del)
+                save_game(player)
+                player.mostrar_pokemons()
+            else:
+                continue
 
 
         elif escolha == '4':

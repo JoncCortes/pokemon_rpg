@@ -66,16 +66,16 @@ class Pessoa:
             print('ERRO: Esse jogador não possui Pokemons!')
 
 
-    # def excluir_pokemon(self, pokemon_excluir):
-    #     try:
-    #         self.pokemons.remove(pokemons)
-    #         print(' ')
-    #         print(f'>>>>>> Pokémon {pokemon_excluir} excluido com sucesso!')
-    #         print(' ')
-    #     except KeyError:
-    #         print('>>>>>> Pokémon inexistente!')
-    #     except Exception as error:
-    #         print(f'Um erro inesperado ocorreu! ERRO: {error}')
+    def excluir_pokemon(self, pokemon_del):
+        try:
+            self.pokemons.pop(pokemon_del)
+            print(' ')
+            print(f'>>>>>> Pokémon {pokemon_del} excluido com sucesso!')
+            print(' ')
+        except KeyError:
+            print('>>>>>> Pokémon inexistente!')
+        except Exception as error:
+            print(f'Um erro inesperado ocorreu! ERRO: {error}')
 
 
     def mostrar_dinheiro(self):

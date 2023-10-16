@@ -24,6 +24,9 @@ foi crescendo e se tornou algo a mais.</p>
 <h2>Changelog:</h2>
 
 
+<p>1.0.5: <br>
+Adicionado sistema para excluir Pokémons.</p>
+
 <p>1.0.4: <br>
 Adicionado Loja.<br>
 Resolvido bug que não salvava os dias passados.</p>
