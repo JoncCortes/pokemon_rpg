@@ -17,7 +17,7 @@ foi crescendo e se tornou algo a mais.</p>
 <li>Entre outros</li>
 </ul>
 
-<p>Sintam-se livres para contribuir com o projeto com forks e Pull requests. </p>
+<p>Sintam-se livres para contribuir com o projeto. </p>
 
 <h3>Obrigado e bom jogo a todos!</h3>
 
